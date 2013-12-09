@@ -1,0 +1,7 @@
+# Use only ascii symbols in comments.
+AsciiComments:
+  Enabled: false
+
+# Limit lines to 80 characters.
+LineLength:
+  Enabled: false

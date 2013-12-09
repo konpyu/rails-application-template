@@ -1,0 +1,13 @@
+assets_path "assets/javascripts"
+
+group :vendor do
+  asset "angular",          "1.2.16"
+  asset "angular-route",    "1.2.16"
+  asset "angular-sanitize", "1.2.16"
+  asset "angular-resource", "1.2.16"
+  asset "angular-cookies",  "1.2.16"
+  asset "angular-animate",  "1.2.16"
+  asset "angular-ui-router", "0.2.10"
+  # asset "angular-ui-sortable", "0.10.1" # for image note
+  # asset "angular-bootstrap"
+end

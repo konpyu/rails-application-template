@@ -1,0 +1,39 @@
+!!!
+%html(ng-app="__APPNAME__App")
+  %head
+    %title __APPNAME__
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+    %meta(name="fragment" content="!")
+    %meta(property="og:site_name"   content="__APPNAME__")
+    %meta(property="og:title"       content="{{ ogp_title }}")
+    %meta(property="og:url"         content="{{ ogp_url }}")
+    %meta(property="og:image"       content="{{ ogp_image }}")
+    %meta(property="og:type"        content="article")
+    %meta(property="og:description" content="{{ ogp_description }}")
+    %meta(http-equiv="X-UA-Compatible" content="IE=10")
+
+    = favicon_link_tag "favicons/#{Rails.env}.ico"
+    = favicon_link_tag 'apple-touch-icon.png', rel:'apple-touch-icon', type: 'image/png'
+
+  %meta(charset="utf-8")
+  %body
+    = link_to "about", "/about"
+
+    = simple_format(flash[:notice], style: "color: green;") if flash[:notice].present?
+    = simple_format(flash[:alert], style: "color: red;") if flash[:alert].present?
+
+    - if signed_in?
+      %p signed_in:
+      = render partial: '/layouts/user_icon', locals: { user: current_user, size: "18x18", klass: "margin_minus2" }
+      = link_to "top", root_path
+      = link_to "logout", logout_path
+    - else
+      %p login:
+      = link_to 'twitter' , '/auth/twitter'
+      = link_to 'facebook', '/auth/facebook'
+
+    .content
+      %div(ng-controller="PagesCtrl" ng-view=true)
